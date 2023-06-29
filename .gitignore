@@ -1,0 +1,13 @@
+Z
+.coverage
+.vscode
+.ipynb_checkpoints
+__pycache__
+*.pyc
+.gitignore
+Présentation Oméga - Dictaphone Synthétiseur.pptx
+test.ipynb
+audio_test
+.DS_Store
+!requirements.txt
+!.gitignore

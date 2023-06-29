@@ -1,0 +1,48 @@
+<nav
+  class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800"
+>
+  <div class="container flex flex-wrap justify-between items-center mx-auto">
+    <a href="https://www.groupeonepoint.com/fr/" class="flex items-center">
+      <img
+        src="{{url_for('static', filename='img/logo_onepoint.png')}}"
+        class="mr-3 sm:w-48"
+        alt="Onepoint"
+        align="middle"
+      />
+    </a>
+  </div>
+</nav>
+
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button
+        type="button"
+        class="navbar-toggle collapsed"
+        data-toggle="collapse"
+        data-target="#navbar"
+        aria-expanded="false"
+        aria-controls="navbar"
+      >
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{{ url_for('index') }}">
+        <!--img src="{{url_for('static', filename='img/logo_onepoint.png')}}" alt="OnePoint logo"-->
+        Dictaphone Summarizer
+      </a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="active">
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="{{ url_for('explanatoryNote') }}">Explanatory Note</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+  {% include 'header.html' %}
+
+  <body>
+    {% include 'navbar.html' %}
+
+    <div class="container">
+      <div class="alert alert-info mt-5">
+        <strong><h1 class="alert-heading">Explanatory Notice</h1></strong>
+        <p>This is an explanatory notice to provide additional information.</p>
+        <p>Please read and understand the content of this notice carefully.</p>
+        <br />
+        <hr />
+        <br />
+        <p class="mb-0">
+          This program is meant to generate meeting reports automatically from
+          an audio file to increase consultant productivity.
+          <br />
+          <br />
+          Firstly, we retrieve the transcript of the audio file thanks to
+          <u
+            ><strong
+              ><a href="https://openai.com/research/whisper"
+                >whisper API</a
+              ></strong
+            ></u
+          >
+          which is deployed on servers hosted by OpenAI.
+          <br />
+          Then, we use the GPT-3.5-turbo API - deployed on our onepoint private
+          cloud on Azure - to perform the summarization and extract the
+          following information :
+          <li>Participants</li>
+          <li>Agenda</li>
+          <li>Elements Discussed</li>
+          <li>Actions to be taken, Deadlines and Responsible</li>
+          <li>Foot Notes</li>
+          Finally, you can export the result on a Power Point (be aware that
+          some content may be cropped depending on the length of the meeting
+          report).
+          <br />
+          Please note that you also have the possibility to change the language
+          in which the summary will be made.
+        </p>
+      </div>
+    </div>
+
+    <div style="text-align: center">
+      <u><a href="/">Go back to the homepage</a></u>
+    </div>
+
+    {% include 'footer.html' %}
+  </body>
+</html>

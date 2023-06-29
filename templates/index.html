@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+  {% include 'header.html' %}
+
+  <body>
+    {% include 'navbar.html' %}
+
+    <div
+      class="alert alert-danger"
+      role="alert"
+      style="text-align: center; color: red; font-weight: bold"
+    >
+      <h2>
+        Please collect people's consent in writing, by SMS, message or email
+        before starting recording!
+        <br />
+        Also, do your best to structure and present each part of your meetings
+        for performance purposes.
+      </h2>
+      <br />
+      <h3>
+        Read
+        <a href="{{ url_for('explanatoryNote') }}"
+          ><u><strong>this explanatory note</strong></u></a
+        >
+        for more information.
+      </h3>
+    </div>
+
+    <div class="container">
+      <form action="/upload" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <div class="mb-3">
+            <label for="file">Choose your audio file to summarize:</label>
+            <input
+              type="file"
+              id="file"
+              name="file"
+              class="form-control"
+              style="height: auto"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="file">Choose the language of the meeting report:</label>
+          <select id="language" name="language">
+            <option value="french">French</option>
+            <option value="english">English</option>
+          </select>
+        </div>
+        <button
+          id="uplaod"
+          type="submit"
+          class="btn btn-primary active"
+          style="font-size: 18px"
+        >
+          Upload
+          <span class="load loading"></span>
+        </button>
+      </form>
+      <br />
+      <h2 style="padding-bottom: 10px">Uploaded Files:</h2>
+
+      {% if file_count > 4 %}
+      <select
+        id="meetingReportSelector"
+        name="meeting_report_selector"
+        class="tab-btn"
+      >
+        {% for index in range(file_count) %}
+        <option value="{{audio_filenames[index]}}">
+          {{ audio_filenames[index][:-4] }}
+        </option>
+        {% endfor %}
+      </select>
+      <br />
+      <br />
+      {% else %}
+      <div class="tab-buttons">
+        {% for index in range(file_count) %}
+
+        <button
+          class="tab-btn"
+          onclick="openReport(event, 'meeting_report_{{audio_filenames[index]}}')"
+        >
+          {{ audio_filenames[index][:-4] }}
+        </button>
+        {% endfor %}
+      </div>
+      {% endif %} {% for index in range(file_count) %}
+      <div
+        id="meeting_report_{{audio_filenames[index]}}"
+        class="tab-content"
+        style="display: none"
+      >
+        <li class="list-group-item">
+          <h3 class="text-5xl text-center mb-7" style="font-weight: bold">
+            {{ audio_filenames[index][:-4] }}
+          </h3>
+          <div class="audio-container mb-7">
+            <audio controls>
+              <source
+                src="{{ url_for('audioFile', filename=audio_filenames[index]) }}"
+                type="audio/mpeg"
+              />
+              Your browser does not support the audio element.
+            </audio>
+            <div class="items-center">
+              <div class="button-container">
+                <!--form action="{{ url_for('downloadRecording', filename=audio_filenames[index]) }}"
+                                    method="POST">
+                                    <input type="submit" value="Download Recording" class="btn btn-primary active"
+                                        role="button" aria-pressed="true" name="stop">
+                                </form-->
+                <form
+                  action="{{ url_for('delete', filename=audio_filenames[index]) }}"
+                  method="POST"
+                  enctype="multipart/form-data"
+                >
+                  <input
+                    type="submit"
+                    value="Delete Transcript"
+                    class="btn btn-danger active"
+                    role="button"
+                    aria-pressed="true"
+                  />
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <h1
+                  class="mb-7"
+                  style="
+                    font-weight: bold;
+                    text-decoration: underline;
+                    text-align: justify;
+                  "
+                >
+                  Transcript:
+                </h1>
+                <div class="container typewriter">
+                  <div id="transcript">
+                    <p>{{ transcripts[index] }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br />
+
+          <div class="text-center">
+            <h2 style="font-weight: bold; font-size: xx-large">
+              Meeting Report
+            </h2>
+            <br />
+            <div class="items-center">
+              <form
+                action="{{ url_for('recomputeMeetingReport', filename=audio_filenames[index]) }}"
+                method="POST"
+                enctype="multipart/form-data"
+              >
+                <div class="text-3xl">
+                  <label for="resume">Language:</label>
+                  <select id="language" name="language">
+                    <option value="french">French</option>
+                    <option value="english">English</option>
+                  </select>
+                  <input
+                    type="submit"
+                    value="Summarize Again"
+                    class="btn btn-danger active"
+                    role="button"
+                    aria-pressed="true"
+                  />
+                </div>
+              </form>
+            </div>
+            <br />
+          </div>
+
+          <div class="container">
+            <div class="mb-7">
+              <div class="button-container">
+                <form
+                  action="{{ url_for('downloadMeetingReportToWord', filename=audio_filenames[index]) }}"
+                  method="POST"
+                  enctype="multipart/form-data"
+                >
+                  <input
+                    type="submit"
+                    value="Export to Word"
+                    class="btn btn-primary active"
+                    role="button"
+                    aria-pressed="true"
+                  />
+                </form>
+                <form
+                  action="{{ url_for('downloadMeetingReportToPpt', filename=audio_filenames[index]) }}"
+                  method="POST"
+                  enctype="multipart/form-data"
+                >
+                  <input
+                    type="submit"
+                    value="Export to PPT"
+                    class="btn btn-info active"
+                    role="button"
+                    aria-pressed="true"
+                  />
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <main>
+            <article>
+              <header style="margin-bottom: 10px">
+                <h2>{{ meeting_reports[index].title_meeting }}</h2>
+              </header>
+
+              <div class="grid-container">
+                <div class="grid-item">
+                  <section>
+                    <h3 style="font-weight: bold">Participants</h3>
+                    <ul>
+                      {%- for participant in meeting_reports[index].participants
+                      %}
+                      <li>&nbsp;&nbsp;• {{ participant }}</li>
+                      {%- endfor %}
+                    </ul>
+                  </section>
+                </div>
+
+                <div class="grid-item">
+                  <section>
+                    <h3 style="font-weight: bold">Agenda</h3>
+                    <ul>
+                      {%- for agenda_item in meeting_reports[index].agenda %}
+                      <li>&nbsp;&nbsp;- {{ agenda_item }}</li>
+                      {%- endfor %}
+                    </ul>
+                  </section>
+                </div>
+              </div>
+
+              <section>
+                <h3 style="font-weight: bold">Elements Discussed</h3>
+                <ul>
+                  {%- for element in meeting_reports[index].elements_discussed
+                  %}
+                  <li>&nbsp;&nbsp;- {{ element }}</li>
+                  {%- endfor %}
+                </ul>
+              </section>
+              <section>
+                <h3 style="font-weight: bold">Action to be Taken</h3>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Action</th>
+                      <th>Responsible</th>
+                      <th>Deadline</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {%- for action in meeting_reports[index].action_to_be_taken
+                    %}
+                    <tr>
+                      <td>{{ action['action'] }}</td>
+                      <td>{{ action['responsable'] }}</td>
+                      <td>{{ action['deadline'] }}</td>
+                    </tr>
+                    {%- endfor %}
+                  </tbody>
+                </table>
+              </section>
+              <section>
+                <h3 style="font-weight: bold">Foot Notes:</h3>
+                <p>{{ meeting_reports[index].notes }}</p>
+              </section>
+            </article>
+          </main>
+        </li>
+      </div>
+      {% endfor %}
+      <hr />
+      <hr />
+      <hr />
+    </div>
+
+    {% include 'footer.html' %}
+  </body>
+
+  <!-- Add nicer display with javascript -->
+  <script src="static/js/display.js"></script>
+</html>

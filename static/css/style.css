@@ -1,0 +1,348 @@
+html div p h1 {
+  font-family: Poppins, sans-serif;
+}
+
+.typewriter {
+  border-right: .15em solid orange;
+  /* Add blinking cursor */
+  font-family: Poppins;
+  display: block;
+  width: max-content;
+  word-wrap: break-word;
+  overflow-x: hidden;
+  font-size: 1.5em;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  animation:
+    typing 2s steps(40, end),
+    blink-caret .75s step-end infinite;
+  animation-duration: 1.5s;
+  animation-timing-function: steps(30, end);
+  animation-fill-mode: forwards;
+  /* display: flex;
+  overflow: hidden;
+  /* Ensures the content is not revealed until the animation
+  border-right: .15em solid rgb(0, 0, 0);
+  /* The typwriter cursor */
+  /* white-space: nowrap;
+  /* Keeps the content on a single line */
+  /* margin: 0 auto;
+  /* Gives that scrolling effect as the typing happens */
+  /* white-space: pre-wrap;
+  letter-spacing: .15em;
+  /* Adjust as needed */
+}
+
+
+/* Typing animation */
+@keyframes typing {
+  0% {
+    width: 0;
+    overflow-x: hidden;
+  }
+
+  50% {
+    overflow-x: hidden;
+    width: 50%;
+  }
+
+  100% {
+    width: 100%;
+    white-space: normal;
+    overflow-x: hidden;
+  }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+
+  from,
+  to {
+    border-color: transparent
+  }
+
+  100% {
+    border-color: orange;
+  }
+}
+
+#resume {
+  overflow-y: scroll;
+  /* Add vertical scrollbar */
+  /* height: 150px;
+  /* Set maximum height */
+  /* background-color: #505050;
+  /* color: #ffffff;*/
+}
+
+#transcript {
+  overflow-y: scroll;
+  /* Add vertical scrollbar */
+  height: 150px;
+  /* Set maximum height */
+  /* background-color: #505050;
+  /* color: #ffffff;*/
+}
+
+
+.audio-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.navbar-default {
+  color: #ffffff;
+  background-color: #009ddf;
+  border-color: #009ddf;
+}
+
+.navbar-default .navbar-brand {
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+}
+
+#navbar.navbar-collapse.collapse {
+  visibility: visible;
+}
+
+
+.button-container {
+  display: flex;
+  align-items: center;
+}
+
+.button-container form {
+  margin-right: 10px;
+}
+
+.btn-info.active:hover {
+  background-color: #C13B1B;
+  border-color: #C13B1B;
+}
+
+.btn-info.active {
+  background-color: #D35230;
+  border-color: #D35230;
+}
+
+
+
+
+/* 
+.navbar-default .navbar-brand img {
+  height: 30px;
+  margin-right: 10px;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: #272727;
+}
+*/
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #272727;
+  color: #fff;
+  text-align: center;
+}
+
+footer div {
+  margin: 0;
+  padding: 10px;
+}
+
+@media screen and (max-width: 600px) {
+  footer {
+    position: static;
+  }
+}
+
+
+.load {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: inherit
+}
+
+.load::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  width: 30px;
+  height: 30px;
+  border-left: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  animation: loading1 1s ease infinite;
+  z-index: 10
+}
+
+.load::before {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  border: 3px dashed #fff;
+  width: 30px;
+  height: 30px;
+  border-left: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  animation: loading1 2s linear infinite;
+  z-index: 5
+}
+
+@keyframes loading1 {
+  0% {
+    transform: rotate(0deg)
+  }
+
+  100% {
+    transform: rotate(360deg)
+  }
+}
+
+button.active {
+  transform: scale(.85)
+}
+
+button.activeLoading .loading {
+  visibility: visible;
+  opacity: 1
+}
+
+button .loading {
+  opacity: 0;
+  visibility: hidden
+}
+
+
+
+
+/* Global styles */
+
+body {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header styles */
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 1em;
+}
+
+
+
+/* Main styles */
+
+main {
+  margin: 1em;
+}
+
+article {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 2em;
+  padding: 1em;
+}
+
+h1 {
+  margin: 0;
+}
+
+h2 {
+  margin: 0;
+}
+
+h3 {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+section:not(:last-child) {
+  margin-bottom: 1em;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  border: 1px solid #ccc;
+  padding: 0.5em;
+  text-align: left;
+  vertical-align: top;
+}
+
+.grid-container {
+  width: 100%;
+  /* optional */
+}
+
+.grid-item {
+  display: inline-flex;
+  width: 45%;
+  /* adjust this value depending on your needs */
+  margin: 10px;
+}
+
+
+.tab-container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.tab-buttons {
+  display: block;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+}
+
+.tab-btn {
+  background-color: #f1f1f1;
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.tab-btn:hover {
+  background-color: #ccc;
+}
+
+.tab-btn.active {
+  background-color: #009ddf;
+  color: white;
+}
+
+.tab-content {
+  border-top: none;
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+  {% include 'header.html' %}
+
+  <body>
+    {% include 'navbar.html' %}
+
+    <div style="text-align: center">
+      <h1>An error occured:</h1>
+      <p>{{ error }}</p>
+      <br />
+      <p>It seems your file or your audio can't be processed for the moment.</p>
+      <br />
+      <u><a href="/">Go back to the homepage</a></u>
+      <br />
+      <img
+        src="/static/img/this_is_fine.png"
+        style="display: block; margin-left: auto; margin-right: auto"
+        width="50%"
+        height="50%"
+      />
+    </div>
+
+    {% include 'footer.html' %}
+  </body>
+</html>
