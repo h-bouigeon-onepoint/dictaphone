@@ -1,15 +1,4 @@
-import pyaudio
-
-
 class Constants:
-    CHUNK = 1024
-
-    FORMAT = pyaudio.paInt16
-
-    CHANNELS = 1
-
-    RATE = 44100
-
     AUDIO_FILE_FORMATS_SUPPORTED = [
         ".wav",
         ".mp3",
